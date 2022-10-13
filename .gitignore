@@ -1,0 +1,5 @@
+# Ignore Editor Config
+./.vscode/
+
+# Ignore Generated Files
+./Gen/
