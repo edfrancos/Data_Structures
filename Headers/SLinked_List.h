@@ -82,6 +82,27 @@ class SLinked_List{
          return TailList->getKey();
       }
 
+   /*  Get Method */
+      SNode<keyType>* getNode(keyType key){
+         if(find(key)){
+            SNode<keyType>* currentNode = HeadList;
+            while(currentNode->getKey() != key){
+               currentNode = currentNode->getTail();
+            }
+            return currentNode;
+         }
+         std::cout<<"Error: This node isn't in the list \n";
+         return nullptr;
+      }
+
+      SNode<keyType>* getAfterNode(keyType key){
+         SNode<keyType>* node = getNode(key);
+         if(node == nullptr){
+            std::cout<<"Error: This node isn't in the list \n";
+            return;
+         }
+         return node->getTail();
+      }
    /*  Add Methods  */
 
       // Add node before other.
