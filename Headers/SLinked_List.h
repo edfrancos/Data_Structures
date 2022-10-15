@@ -82,10 +82,39 @@ class SLinked_List{
          return TailList->getKey();
       }
 
-   
+   /*  Add Methods  */
+
+      // Add node before other.
+      void addBefore(SNode<keyType>* node, keyType key){
+         if(find(node)){
+            SNode<keyType>* newNode = new SNode<keyType>(key);
+            SNode<keyType>* beforeNode = HeadList;
+            while(beforeNode->getTail() != node){
+               beforeNode = beforeNode->getTail();
+            }
+            newNode->setTail(beforeNode->getTail());
+            beforeNode->setTail(newNode);
+            return;
+         }
+         std::cout<<"Error: This node isn't in the list \n";
+      }
+      // Add node after other.
+      void addAfter(SNode<keyType>* node, keyType key){
+         if(find(node->getKey())){
+            SNode<keyType>* newNode = new SNode<keyType>(key);
+            newNode->setTail(node->setTail());
+            node->setTail(newNode);
+            if( TailList == node){
+               TailList = newNode;
+            }
+            return;
+         }
+         std::cout<<"Error: This node isn't in the list \n";
+      }
+
    /*  Special Methods  */
 
-      // Search a key in the list
+      // Search a key in the list.
       bool find(keyType key){
          SNode<keyType>* currentNode = HeadList;
          while(currentNode->getKey() != key){
@@ -96,7 +125,7 @@ class SLinked_List{
          }
          return true;
       }
-      // Remove the element that has a specific key
+      // Remove the element that has a specific key.
       void erase(keyType key){
          SNode<keyType>* currentNode = HeadList;
          if(HeadList->getKey() == key){
